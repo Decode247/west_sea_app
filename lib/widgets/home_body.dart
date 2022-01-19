@@ -38,11 +38,17 @@ class _HomePageBodyState extends State<HomePageBody> {
                   label: 'Save',
                   color: Colors.green,
                   onTabed: () {
-                    final saveDb = Savedb();
-                    saveDb.numbers = controller.numbers.toString();
-                    saveDb.date = DateTime.now();
-                    final box = Boxes.getSaveDb();
-                    box.add(saveDb);
+                    if (_isPressed) {
+                      final saveDb = Savedb();
+                      saveDb.numbers = controller.numbers.toString();
+                      saveDb.date = DateTime.now();
+                      final box = Boxes.getSaveDb();
+                      if (saveDb.isInBox) {
+                        saveDb.delete();
+                      } else {
+                        box.add(saveDb);
+                      }
+                    }
                   },
                 ),
               ],

@@ -13,12 +13,6 @@ class SavePage extends StatefulWidget {
 
 class _SavePageState extends State<SavePage> {
   @override
-  void dispose() {
-    Hive.box('Savedb').close();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -41,16 +35,22 @@ class _SavePageState extends State<SavePage> {
     if (saves.isEmpty) {
       return const Center(
         child: Text(
-          'No expenses yet!',
+          'No Saved Numbers yet!!',
           style: TextStyle(fontSize: 24),
         ),
       );
     } else {
-      return ListView.builder(
-        itemCount: saves.length,
-        itemBuilder: (context, index) {
-          return buildSaved(context, saves[index]);
-        },
+      return Container(
+        margin: const EdgeInsets.only(top: 25),
+        child: ListView.separated(
+          itemCount: saves.length,
+          itemBuilder: (context, index) {
+            return buildSaved(context, saves[index]);
+          },
+          separatorBuilder: (context, index) {
+            return const SizedBox(height: 15);
+          },
+        ),
       );
     }
   }

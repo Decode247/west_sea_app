@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:west_sea_app/screens/home_page.dart';
+import 'package:west_sea_app/screens/save_page.dart';
 
 import 'data/savedb.dart';
 
@@ -20,10 +21,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const GetMaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'West Sea App',
-      home: HomePage(),
+      home: const HomePage(),
+      routes: {
+        '/saveScreen': (context) => const SavePage(),
+      },
     );
   }
 }

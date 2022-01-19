@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:west_sea_app/screens/save_page.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/link.dart';
 
 class MyDrawer extends StatelessWidget {
   MyDrawer({Key? key}) : super(key: key);
@@ -41,65 +39,53 @@ class MyDrawer extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                myListTile(
-                  title: 'Saved Numbers',
-                  subtitle: 'Your Favourite numbers',
-                  icon: const Icon(
-                    Icons.save,
-                    color: Colors.green,
-                  ),
-                  onTabed: () {
-                    Get.to(() => const SavePage());
+                Link(
+                  uri: Uri.parse('/saveScreen'),
+                  builder: (context, followLink) {
+                    return myListTile(
+                      title: 'Saved Numbers',
+                      subtitle: 'draw, statics, hot ones and cold ones',
+                      icon: const Icon(Icons.save, color: Colors.green),
+                      onTabed: followLink,
+                    );
                   },
                 ),
-                myListTile(
-                  title: 'VIDOES',
-                  subtitle: 'Predictions, Strategies, draw',
-                  icon: Container(
-                      color: Colors.red[900],
-                      child: const Icon(Icons.play_arrow, color: Colors.white)),
-                  onTabed: () async {
-                    if (await canLaunch(_url[0])) {
-                      await launch(
-                        _url[0],
-                        forceSafariVC: true,
-                        forceWebView: true,
-                        enableJavaScript: true,
-                      );
-                    } else {
-                      debugPrint('Failed');
-                    }
+                Link(
+                  target: LinkTarget.self,
+                  uri: Uri.parse(_url[0]),
+                  builder: (context, followLink) {
+                    return myListTile(
+                      title: 'VIDOES',
+                      subtitle: 'draws, strategies, techniques, predictions',
+                      icon: Container(
+                        color: Colors.red,
+                        child:
+                            const Icon(Icons.play_arrow, color: Colors.white),
+                      ),
+                      onTabed: followLink,
+                    );
                   },
                 ),
-                myListTile(
-                  title: 'WEBSITE',
-                  subtitle: 'draw, statics, hot ones and cold ones',
-                  icon: Icon(Icons.language, color: Colors.grey[350]),
-                  onTabed: () async {
-                    if (await canLaunch(_url[1])) {
-                      await launch(
-                        _url[1],
-                        forceSafariVC: true,
-                        forceWebView: true,
-                        enableJavaScript: true,
-                      );
-                    }
+                Link(
+                  uri: Uri.parse(_url[1]),
+                  builder: (context, followLink) {
+                    return myListTile(
+                      title: 'WEBSITE',
+                      subtitle: 'draw, statics, hot ones and cold ones',
+                      icon: Icon(Icons.language, color: Colors.grey[350]),
+                      onTabed: followLink,
+                    );
                   },
                 ),
-                myListTile(
-                  title: 'FACEBOOK',
-                  subtitle: 'Sharing, Discussing, Collaborating, Doomer!!',
-                  icon:
-                      const Icon(Icons.facebook, size: 36, color: Colors.blue),
-                  onTabed: () async {
-                    if (await canLaunch(_url[2])) {
-                      await launch(
-                        _url[1],
-                        forceSafariVC: true,
-                        forceWebView: true,
-                        enableJavaScript: true,
-                      );
-                    }
+                Link(
+                  uri: Uri.parse(_url[2]),
+                  builder: (context, followLink) {
+                    return myListTile(
+                      title: 'FACEBOOK',
+                      subtitle: 'discussing, collaborating, techiques, sharing',
+                      icon: const Icon(Icons.facebook, color: Colors.blue),
+                      onTabed: followLink,
+                    );
                   },
                 ),
               ],
@@ -115,7 +101,7 @@ Widget myListTile(
     {required String title,
     required String subtitle,
     Widget? icon,
-    required void Function() onTabed}) {
+    required Future<void> Function()? onTabed}) {
   return ListTile(
     title: Text(
       title,
