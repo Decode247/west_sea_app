@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:west_sea_app/widgets/home_body.dart';
+import 'package:west_sea_app/widgets/home_page_drawer.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -11,7 +12,8 @@ class HomePage extends StatelessWidget {
         title: const Text('UK49\'s Predictions'),
         centerTitle: true,
       ),
-      body: HomePageBody(),
+      drawer: MyDrawer(),
+      body: const HomePageBody(),
     );
   }
 }

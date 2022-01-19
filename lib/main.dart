@@ -1,7 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:west_sea_app/screens/home_page.dart';
 
-void main() {
+import 'data/savedb.dart';
+
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Hive.initFlutter();
+  Hive.registerAdapter(SavedbAdapter());
+  await Hive.openBox<Savedb>('Savedb');
+
   runApp(const MyApp());
 }
 
@@ -10,7 +20,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return const GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'West Sea App',
       home: HomePage(),
     );
