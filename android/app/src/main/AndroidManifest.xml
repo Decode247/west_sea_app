@@ -28,7 +28,7 @@
   </intent>
 </queries>
    <application
-        android:label="west_sea_app"
+        android:label="UK49's Predictions"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
         android:usesCleartextTraffic="true">
@@ -58,5 +58,8 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-1631009735774535~6249656530"/>
     </application>
 </manifest>

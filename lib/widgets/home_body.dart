@@ -44,7 +44,7 @@ class _HomePageBodyState extends State<HomePageBody> {
                       saveDb.date = DateTime.now();
                       final box = Boxes.getSaveDb();
                       if (saveDb.isInBox) {
-                        saveDb.delete();
+                        return;
                       } else {
                         box.add(saveDb);
                       }
