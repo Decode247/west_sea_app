@@ -17,7 +17,7 @@ class _HomePageState extends State<HomePage> {
 
   void _createBottomBannerAd() {
     _bottomBannerAd = BannerAd(
-      adUnitId: AdHelper.bannerAdUnitId,
+      adUnitId: AdHelper.bottomBannerAdUnitId,
       size: AdSize.banner,
       request: const AdRequest(),
       listener: BannerAdListener(onAdLoaded: (_) {

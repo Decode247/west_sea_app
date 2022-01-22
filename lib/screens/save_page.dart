@@ -32,7 +32,7 @@ class _SavePageState extends State<SavePage> {
 
   void _creatInlineBannerAd() {
     _inLineBannerAd = BannerAd(
-      adUnitId: AdHelper.bannerAdUnitId,
+      adUnitId: AdHelper.onListBannerAdUnitId,
       size: AdSize.banner,
       request: const AdRequest(),
       listener: BannerAdListener(
