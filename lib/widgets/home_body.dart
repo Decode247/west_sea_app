@@ -14,6 +14,7 @@ class HomePageBody extends StatefulWidget {
 class _HomePageBodyState extends State<HomePageBody> {
   final number = Get.put(NumberGenerator());
   static bool _isPressed = false;
+  var snackBar = const SnackBar(content: Text('Numbers Already Saved!!!'));
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +45,7 @@ class _HomePageBodyState extends State<HomePageBody> {
                       saveDb.date = DateTime.now();
                       final box = Boxes.getSaveDb();
                       if (saveDb.isInBox) {
-                        return;
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
                       } else {
                         box.add(saveDb);
                       }

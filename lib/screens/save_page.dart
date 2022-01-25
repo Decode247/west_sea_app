@@ -137,6 +137,7 @@ class _SavePageState extends State<SavePage> {
       return Container(
         margin: const EdgeInsets.only(top: 25),
         child: ListView.separated(
+          reverse: true,
           itemCount: saves.length +
               (_isIlineBannerAdLoaded && saves.length > 1 ? 1 : 0),
           itemBuilder: (context, index) {
